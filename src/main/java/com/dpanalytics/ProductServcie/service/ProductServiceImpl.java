@@ -41,12 +41,14 @@ public class ProductServiceImpl implements ProductService{
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ProductServiceCustomException("404", "Didn't found the product with id"));
         ProductResponse productResponse = new ProductResponse();
+        log.info("Product fetched successfully");
         copyProperties(product, productResponse);
         return productResponse;
     }
 
     @Override
     public ProductResponse reduceProductQuantity(long productId, long quantity) {
+        log.info("Fetching the product with ID: {}", productId);
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ProductServiceCustomException("Product doesn't exist with given id "+productId,
                         "PRODUCT_NOT_FOUND"));
