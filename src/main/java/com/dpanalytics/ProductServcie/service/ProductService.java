@@ -5,5 +5,8 @@ import com.dpanalytics.ProductServcie.model.ProductResponse;
 
 public interface ProductService {
     public long addProduct(ProductRequest productRequest);
+
     public ProductResponse getProductById(long productId);
+
+    ProductResponse reduceProductQuantity(long productId, long quantity);
 }
