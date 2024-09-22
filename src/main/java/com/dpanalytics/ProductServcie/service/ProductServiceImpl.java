@@ -1,6 +1,7 @@
 package com.dpanalytics.ProductServcie.service;
 
 import com.dpanalytics.ProductServcie.entity.Product;
+import com.dpanalytics.ProductServcie.exception.ProductServiceCustomException;
 import com.dpanalytics.ProductServcie.model.ProductRequest;
 import com.dpanalytics.ProductServcie.model.ProductResponse;
 import com.dpanalytics.ProductServcie.repository.ProductRepository;
@@ -36,7 +37,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public ProductResponse getProductById(long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Didn't found the product with id"));
+                .orElseThrow(() -> new ProductServiceCustomException("404", "Didn't found the product with id"));
         ProductResponse productResponse = new ProductResponse();
         copyProperties(product, productResponse);
         return productResponse;

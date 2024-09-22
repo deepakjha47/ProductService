@@ -32,5 +32,4 @@ public class ProductServiceController {
         ProductResponse productResponse = productService.getProductById(productId);
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
-
 }
